@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Responsive image gallery built with HTML, CSS and JavaScript for CodeAlpha internship.">
+  <title>CodeAlpha Image Gallery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav container">
+      <a class="logo" href="#">Gallery<span>.</span></a>
+      <span class="internship">CodeAlpha Internship</span>
+    </nav>
+
+    <div class="hero-content container">
+      <p class="eyebrow">Explore • Filter • View</p>
+      <h1>Moments in <span>Focus</span></h1>
+      <p class="hero-text">A responsive JavaScript image gallery with categories, smooth transitions and a full-screen lightbox.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="toolbar" aria-label="Gallery filters">
+      <div id="filters" class="filters">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="nature">Nature</button>
+        <button class="filter" data-filter="city">City</button>
+        <button class="filter" data-filter="travel">Travel</button>
+      </div>
+      <p id="count" class="count"></p>
+    </section>
+
+    <section id="gallery" class="gallery" aria-label="Image gallery"></section>
+  </main>
+
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <button id="close" class="close" aria-label="Close image viewer">&times;</button>
+    <button id="prev" class="nav-btn prev" aria-label="Previous image">&#10094;</button>
+
+    <figure class="viewer">
+      <img id="lightboxImage" src="" alt="">
+      <figcaption>
+        <div>
+          <h2 id="lightboxTitle"></h2>
+          <p id="lightboxCategory"></p>
+        </div>
+        <span id="counter"></span>
+      </figcaption>
+    </figure>
+
+    <button id="next" class="nav-btn next" aria-label="Next image">&#10095;</button>
+  </div>
+
+  <footer class="footer">
+    <p>Built with HTML • CSS • JavaScript | CodeAlpha Frontend Internship</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

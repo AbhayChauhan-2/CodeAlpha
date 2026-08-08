@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #0f172a;
+  --card: #111827;
+  --display: #020617;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --key: #1e293b;
+  --key-hover: #334155;
+  --operator: #2563eb;
+  --operator-hover: #1d4ed8;
+  --equals: #16a34a;
+  --equals-hover: #15803d;
+  --danger: #dc2626;
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top, #1e3a8a 0, var(--bg) 45%, #020617 100%);
+  color: var(--text);
+}
+
+.calculator {
+  width: min(100%, 390px);
+  padding: 22px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 28px;
+  background: rgba(17,24,39,.94);
+  box-shadow: 0 24px 70px rgba(0,0,0,.45);
+  backdrop-filter: blur(12px);
+}
+
+.calculator-header {
+  margin-bottom: 18px;
+}
+
+.badge {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: rgba(37,99,235,.16);
+  color: #93c5fd;
+  font-size: .72rem;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 1.6rem;
+}
+
+.display-card {
+  padding: 16px;
+  margin-bottom: 14px;
+  border-radius: 18px;
+  background: var(--display);
+  overflow: hidden;
+}
+
+.history {
+  height: 24px;
+  color: var(--muted);
+  font-size: .9rem;
+  text-align: right;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.display {
+  width: 100%;
+  margin-top: 4px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+  text-align: right;
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.key {
+  min-height: 64px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--key);
+  color: var(--text);
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .15s ease, background .15s ease;
+}
+
+.key:hover {
+  background: var(--key-hover);
+  transform: translateY(-2px);
+}
+
+.key:active {
+  transform: scale(.96);
+}
+
+.key.function {
+  background: #3f1d1d;
+  color: #fca5a5;
+}
+
+.key.operator {
+  background: var(--operator);
+}
+
+.key.operator:hover {
+  background: var(--operator-hover);
+}
+
+.key.equals {
+  background: var(--equals);
+}
+
+.key.equals:hover {
+  background: var(--equals-hover);
+}
+
+.key.zero {
+  grid-column: span 2;
+}
+
+.keyboard-hint {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: .72rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+@media (max-width: 380px) {
+  .calculator {
+    padding: 16px;
+  }
+
+  .key {
+    min-height: 58px;
+  }
+}
