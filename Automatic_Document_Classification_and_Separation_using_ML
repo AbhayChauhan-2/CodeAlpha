@@ -1,0 +1,143 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPSNB73Xdn44x/uBkn+1alY",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/AbhayChauhan-2/CodeAlpha/blob/main/Automatic_Document_Classification_and_Separation_using_ML\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "x1R0FCx4rdEG",
+        "outputId": "4b0797ff-98d0-4b28-ffea-19f20dcc4a16"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Document Classification Results:\n",
+            "\n",
+            "Document: Deep learning and computer programming\n",
+            "Category: Technology\n",
+            "--------------------------------------------------\n",
+            "Document: The team won the football match\n",
+            "Category: Sports\n",
+            "--------------------------------------------------\n",
+            "Document: Exercise improves physical health\n",
+            "Category: Health\n",
+            "--------------------------------------------------\n",
+            "\n",
+            "Separated Documents:\n",
+            "\n",
+            "Technology:\n",
+            "- Deep learning and computer programming\n",
+            "\n",
+            "Sports:\n",
+            "- The team won the football match\n",
+            "\n",
+            "Health:\n",
+            "- Exercise improves physical health\n"
+          ]
+        }
+      ],
+      "source": [
+        "\n",
+        "from sklearn.feature_extraction.text import TfidfVectorizer\n",
+        "from sklearn.naive_bayes import MultinomialNB\n",
+        "from sklearn.pipeline import Pipeline\n",
+        "\n",
+        "# Sample training documents\n",
+        "documents = [\n",
+        "    \"Python programming and artificial intelligence\",\n",
+        "    \"Machine learning and neural networks\",\n",
+        "    \"Football match and cricket tournament\",\n",
+        "    \"Players scored goals in the match\",\n",
+        "    \"Healthy food and regular exercise\",\n",
+        "    \"Doctors provide medical treatment\"\n",
+        "]\n",
+        "\n",
+        "labels = [\n",
+        "    \"Technology\",\n",
+        "    \"Technology\",\n",
+        "    \"Sports\",\n",
+        "    \"Sports\",\n",
+        "    \"Health\",\n",
+        "    \"Health\"\n",
+        "]\n",
+        "\n",
+        "# Build the classification pipeline\n",
+        "model = Pipeline([\n",
+        "    (\"tfidf\", TfidfVectorizer()),\n",
+        "    (\"classifier\", MultinomialNB())\n",
+        "])\n",
+        "\n",
+        "# Train the classifier\n",
+        "model.fit(documents, labels)\n",
+        "\n",
+        "# Classify new documents\n",
+        "new_documents = [\n",
+        "    \"Deep learning and computer programming\",\n",
+        "    \"The team won the football match\",\n",
+        "    \"Exercise improves physical health\"\n",
+        "]\n",
+        "\n",
+        "predictions = model.predict(new_documents)\n",
+        "\n",
+        "print(\"Document Classification Results:\\n\")\n",
+        "\n",
+        "for document, category in zip(new_documents, predictions):\n",
+        "    print(\"Document:\", document)\n",
+        "    print(\"Category:\", category)\n",
+        "    print(\"-\" * 50)\n",
+        "\n",
+        "# Separate documents according to their predicted category\n",
+        "separated_documents = {}\n",
+        "\n",
+        "for document, category in zip(new_documents, predictions):\n",
+        "    separated_documents.setdefault(category, []).append(document)\n",
+        "\n",
+        "print(\"\\nSeparated Documents:\")\n",
+        "\n",
+        "for category, docs in separated_documents.items():\n",
+        "    print(f\"\\n{category}:\")\n",
+        "    for doc in docs:\n",
+        "        print(\"-\", doc)"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "aEJOk6MhtINx"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
